@@ -7,9 +7,11 @@ from PIL import Image
 from io import BytesIO
 import requests
 
+
 # 格式输出
 tplt = "{:^10}\t{:^10}\t{:^10}"
 print(tplt.format("排名","大学","分数",chr(12288)))
+
 
 # 请求获取图片并保存
 r = requests.get('https://pic3.zhimg.com/247d9814fec770e2c85cc858525208b2_is.jpg')
@@ -19,16 +21,20 @@ i = Image.open(BytesIO(r.content))
 with open('img.jpg', 'wb') as fd:
    for chunk in r.iter_content():
        fd.write(chunk)
-#
+
+        
 import imghdr
 print(imghdr.what('D:\pythonProject\MyPractice\图片\第6张.jpg'))
+
 
 from PIL import Image
 import os
 
+
 #
 source_path = "./图片3//"         #后面一定要是双斜线，前面的可以空，可以双，可以单。
 des_path = "./图片4//"
+
 
 source_file = os.listdir(source_path)
 for file_name in source_file:
@@ -39,17 +45,17 @@ for file_name in source_file:
     image.save(f"{des_path}{file_name}.jpg")
 print("转换完毕")
 
+
 #
 dic = json.loads(res.text)    #等同于：dic=res.text.json()
 pprint.pprint(dic)
        
- #合并视频
+
+#合并视频
  
 在windows系统下面，直接可以使用:copy/b *.ts video.mp4  把所有ts文件合成一个mp4格式文件
-
 copy/b D:\newpython\doutu\sao\ts_files\*.ts d:\fnew.ts
-
-       
+     
        
 #随意伪装头 
 import requests
@@ -72,6 +78,7 @@ csvwriter.writerow([time,name,place,price])
 table.find_all("li")是列表，可迭代。
 3.xpath:tree=etree.HTML(res),tree=html.fromstring(res),result=tree.xpath("//li/div/div[2]/div[1]/a/span[1]/text()")
 
+    
 #一些重要的类型
 url = "https://www.baidu.com"
 res=requests.get(url)
@@ -106,11 +113,13 @@ print(type(m.groups()))        #是元组
 ('123', 'abc', '456')
 <class 'tuple'>
 
+
 #请求响应最简单方式：
 from urllib.request import urlopen
 
 res = urlopen("https://www.runoob.com/")
 print(res.read())           #是read(),不是.text
+
 
 
 #百度翻译
@@ -121,6 +130,7 @@ data={"kw":s}
 res=requests.post(url,data=data)
 print(res)
 print(res.json())
+
 
 #re正则式
 import requests
@@ -184,6 +194,7 @@ print(ret)
 # 唯一的区别是 find_all() 方法的返回结果是值包含一个元素的列表,而 find() 方法直接返回结果.
 # find_all() 方法没有找到目标是返回空列表, find() 方法找不到目标时,返回 None .
 
+
 from bs4 import BeautifulSoup
 import requests
 import csv
@@ -210,7 +221,6 @@ for li in lis:
 
 # 注：.find("div",class_="values")得到的是element.Tag标签个体，里面可以直接.text，也可循环。
     .findAll("div")得到的是element.ResultSet集合,可以循环。
-
 
 
 #etree与html
@@ -344,6 +354,7 @@ for downhref in childurllst:
         # dic=ittt.groupdict()
         # print(dic)
 
+        
 #爬优美图库   注意get的用法
 import time
 import requests
@@ -374,7 +385,6 @@ for downurl in lst:
 
     print("完成一个--",imgname)
     time.sleep(2)
-
 print("OVER!")
 
 
@@ -396,6 +406,7 @@ for div in divs:
     print(name,price,total,yewu)
 
 #session会话保存密码
+
 
 import requests
 
@@ -436,6 +447,7 @@ proxies = {
 }
 
 resp = requests.get("https://www.baidu.com", proxies=proxies)
+
 
 
 #网易云评论
