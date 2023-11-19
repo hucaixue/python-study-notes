@@ -3,33 +3,25 @@ list = ["A", "B","C", "D", "E", "F", "G" ]
 for i in list:
     print(list.index(i))
     print(i)
-from PIL import Image
-from io import BytesIO
-import requests
-
-
+    
 # 格式输出
 tplt = "{:^10}\t{:^10}\t{:^10}"
 print(tplt.format("排名","大学","分数",chr(12288)))
 
-
 # 请求获取图片并保存
+from PIL import Image
+from io import BytesIO
+
+# 将图片保存
 r = requests.get('https://pic3.zhimg.com/247d9814fec770e2c85cc858525208b2_is.jpg')
 i = Image.open(BytesIO(r.content))
 # i.show()  # 查看图片
-# 将图片保存
 with open('img.jpg', 'wb') as fd:
    for chunk in r.iter_content():
        fd.write(chunk)
-
-        
+     
 import imghdr
 print(imghdr.what('D:\pythonProject\MyPractice\图片\第6张.jpg'))
-
-
-from PIL import Image
-import os
-
 
 #
 source_path = "./图片3//"         #后面一定要是双斜线，前面的可以空，可以双，可以单。
@@ -51,8 +43,7 @@ dic = json.loads(res.text)    #等同于：dic=res.text.json()
 pprint.pprint(dic)
        
 
-#合并视频
- 
+#合并视频 
 在windows系统下面，直接可以使用:copy/b *.ts video.mp4  把所有ts文件合成一个mp4格式文件
 copy/b D:\newpython\doutu\sao\ts_files\*.ts d:\fnew.ts
      
@@ -73,10 +64,17 @@ csvwriter=csv.writer(f)
 csvwriter.writerow([time,name,place,price])
 
 解析总结：
-1.requests--res.text--re--obj--result--match,search,findall(列表),finditer(迭代器),it.groupdict()键值是子群名。#早蝶配收字典
-2.bs4:page=BeautifulSoup(res.text,"html.parser"),table = page.find("div", attrs={"class": "quotation-content-list"})是标签,
+1.requests--res.text--re--obj--result--match,search,findall(列表),finditer(迭代器),it.groupdict()键值是子群名。
+#早蝶配收字典
+
+2.bs4:
+page=BeautifulSoup(res.text,"html.parser"),
+table = page.find("div", attrs={"class": "quotation-content-list"})是标签,
 table.find_all("li")是列表，可迭代。
-3.xpath:tree=etree.HTML(res),tree=html.fromstring(res),result=tree.xpath("//li/div/div[2]/div[1]/a/span[1]/text()")
+
+3.xpath:tree=etree.HTML(res),
+tree=html.fromstring(res),
+result=tree.xpath("//li/div/div[2]/div[1]/a/span[1]/text()")
 
     
 #一些重要的类型
